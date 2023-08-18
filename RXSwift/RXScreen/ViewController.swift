@@ -11,9 +11,8 @@ import RxRelay
 
 final class ViewController: UIViewController {
     
-    private let mainView = View()
+    let mainView = View()
     private let disposeBag = DisposeBag()
-    private let networkService = NetworkService()
     
     private lazy var animalsRelay = PublishRelay<[Animal]>()
     private lazy var animals: Observable<[Animal]> = animalsRelay.asObservable()
@@ -28,6 +27,13 @@ final class ViewController: UIViewController {
         }
     }
     
+    var searchBarText: Observable<String> {
+        return mainView.textField.rx.text.orEmpty
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(on: MainScheduler.instance)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = mainView
@@ -35,60 +41,42 @@ final class ViewController: UIViewController {
         bindUI()
     }
     
+    func showLoadingAnimation(_ value: Bool) {
+        if value {
+            mainView.activityIndicator.startAnimating()
+        } else {
+            mainView.activityIndicator.stopAnimating()
+        }
+    }
+    
     private func bindUI() {
+        let networkService = NetworkService(withNameObservable: searchBarText,
+                                                         vc: self)
+        
         mainView.cancelButton.rx
             .controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
-                self?.networkService.calcelCurrentRequests()
                 self?.mainView.textField.text = nil
-                self?.animalsRelay.accept([])
-                self?.mainView.activityIndicator.stopAnimating()
             }, onDisposed: {
                 print("cancelButton disposed")
             }).disposed(by: disposeBag)
         
-        mainView.textField.rx.text.orEmpty
-            .changed
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] text in
-                guard let self else { return }
-                self.mainView.activityIndicator.startAnimating()
-                self.networkService.calcelCurrentRequests()
-                guard !text.isEmpty,
-                      let catsRequest = NetworkRequestFactory().getCatsRequest(name: text),
-                      let dogsRequest = NetworkRequestFactory().getDogsRequest(name: text)
-                else {
-                    self.errorCompletion(nil)
-                    return
-                }
-                
-                Single.zip(self.networkService.sendCatRequest(request: catsRequest),
-                           self.networkService.sendDogRequest(request: dogsRequest)) { (cats, dogs) in
-                    cats + dogs
-                }.map { (items) in
-                    items.sorted(by: { (item1, item2) in
-                        item1.playfulness > item2.playfulness
-                    })
-                }.subscribe (onSuccess: {
-                    self.animalsRelay.accept($0)
-                    DispatchQueue.main.async {
-                        self.mainView.activityIndicator.stopAnimating()
-                    }
-                }, onFailure: { error in
-                    self.errorCompletion(error)
-                }
-                ).disposed(by: self.disposeBag)
-            }, onError: { error in
-                self.errorCompletion(error)
-            }, onDisposed: {
-                print("textField disposed")
-            }).disposed(by: disposeBag)
-        
-        animals.bind(to: mainView.resultTableView.rx.items(
-            cellIdentifier: "Cell",
-            cellType: Cell.self
-        )) { index, model, cell in
-            cell.textLabel?.text = "\(model.name) - \(model.playfulness)"
-        }.disposed(by: disposeBag)
+        Driver
+            .zip(networkService.catsDriver,
+                 networkService.dogsDriver)
+            { (cats, dogs) in
+                cats + dogs
+            }
+            .map { (items) in
+                items.sorted(by: { (item1, item2) in
+                    return item1.playfulness == item2.playfulness ? item1.name < item2.name : item1.playfulness > item2.playfulness
+                })
+            }
+            .drive(mainView.resultTableView.rx.items(
+                cellIdentifier: "Cell",
+                cellType: Cell.self
+            )) { index, model, cell in
+                cell.textLabel?.text = "\(model.playfulness) - \(model.name)"
+            }.disposed(by: disposeBag)
     }
 }

@@ -6,73 +6,78 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxCocoa
 
 protocol NetworkServiceProtocol {
 }
 
 final class NetworkService: NetworkServiceProtocol {
     
-    private var currentCatTask: URLSessionDataTask?
-    private var currentDogTask: URLSessionDataTask?
+    private var animalName: Observable<String>
+    lazy var catsDriver: Driver<[Animal]> = self.fetchCats()
+    lazy var dogsDriver: Driver<[Animal]> = self.fetchDogs()
     
-    func calcelCurrentRequests() {
-        currentCatTask?.cancel()
-        currentDogTask?.cancel()
+    weak var vc: ViewController?
+    
+    init(withNameObservable animalName: Observable<String>,
+         vc: ViewController) {
+        self.animalName = animalName
+        self.vc = vc
     }
     
-    func sendCatRequest(request: URLRequest) -> Single<[Animal]> {
-        return Single<[Animal]>.create { [weak self] single in
-            let defaultSession = URLSession(configuration: .default)
-            
-            self?.currentCatTask = defaultSession.dataTask(
-                with: request
-            ) { data, response, error in
-                if let error = error {
-                    single(.failure(error))
-                } else if let data = data {
+    private func fetchCats() -> Driver<[Animal]> {
+        return animalName
+            .filter { !$0.isEmpty }
+            .subscribe(on: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.vc?.showLoadingAnimation(true)
+            })
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest { text in
+                URLSession.shared.rx.data(request: NetworkRequestFactory()
+                    .getCatsRequest(name: text))
+                .map { data in
                     if let result = try? JSONDecoder().decode([Animal].self, from: data) {
-                        single(.success(result))
+                        return result
                     } else {
-                        single(.failure(NetworkError.cantParce))
+                        return []
                     }
                 }
             }
-            
-            self?.currentCatTask?.resume()
-            
-            return Disposables.create { [weak self] in
-                self?.currentCatTask?.cancel()
-            }
-        }
+            .observe(on: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.vc?.showLoadingAnimation(false)
+            })
+            .asDriver(onErrorJustReturn: [])
     }
     
-    func sendDogRequest(request: URLRequest) -> Single<[Animal]> {
-        return Single<[Animal]>.create { [weak self] single in
-            let defaultSession = URLSession(configuration: .default)
-            
-            self?.currentDogTask = defaultSession.dataTask(
-                with: request
-            ) { data, response, error in
-                if let error = error {
-                    single(.failure(error))
-                } else if let data = data {
+    private func fetchDogs() -> Driver<[Animal]> {
+        return animalName
+            .filter { !$0.isEmpty }
+            .subscribe(on: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.vc?.showLoadingAnimation(true)
+            })
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest { text in
+                URLSession.shared.rx.data(request: NetworkRequestFactory()
+                    .getDogsRequest(name: text))
+                .map { data in
                     if let result = try? JSONDecoder().decode([Animal].self, from: data) {
-                        single(.success(result))
+                        return result
                     } else {
-                        single(.failure(NetworkError.cantParce))
+                        return []
                     }
                 }
             }
-            
-            self?.currentDogTask?.resume()
-            
-            return Disposables.create { [weak self] in
-                self?.currentDogTask?.cancel()
-            }
-        }
+            .observe(on: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.vc?.showLoadingAnimation(false)
+            })
+            .asDriver(onErrorJustReturn: [])
     }
 }
-    
+
 enum NetworkError: Error {
     case noResponse
     case failedResponse
