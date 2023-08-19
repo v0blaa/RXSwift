@@ -67,7 +67,7 @@ final class ViewController: UIViewController {
             { (cats, dogs) in
                 cats + dogs
             }
-            .map { (items) in
+            .flatMapLatest { (items) in
                 items.sorted(by: { (item1, item2) in
                     return item1.playfulness == item2.playfulness ? item1.name < item2.name : item1.playfulness > item2.playfulness
                 })
