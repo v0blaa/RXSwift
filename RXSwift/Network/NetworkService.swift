@@ -27,7 +27,6 @@ final class NetworkService: NetworkServiceProtocol {
     
     private func fetchCats() -> Driver<[Animal]> {
         return animalName
-            .filter { !$0.isEmpty }
             .subscribe(on: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
                 self?.vc?.showLoadingAnimation(true)
@@ -40,20 +39,17 @@ final class NetworkService: NetworkServiceProtocol {
                     if let result = try? JSONDecoder().decode([Animal].self, from: data) {
                         return result
                     } else {
+                        print("Cant decode result")
                         return []
                     }
                 }
             }
             .observe(on: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.vc?.showLoadingAnimation(false)
-            })
             .asDriver(onErrorJustReturn: [])
     }
     
     private func fetchDogs() -> Driver<[Animal]> {
         return animalName
-            .filter { !$0.isEmpty }
             .subscribe(on: MainScheduler.instance)
             .do(onNext: { [weak self] _ in
                 self?.vc?.showLoadingAnimation(true)
@@ -66,14 +62,12 @@ final class NetworkService: NetworkServiceProtocol {
                     if let result = try? JSONDecoder().decode([Animal].self, from: data) {
                         return result
                     } else {
+                        print("Cant decode result")
                         return []
                     }
                 }
             }
             .observe(on: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.vc?.showLoadingAnimation(false)
-            })
             .asDriver(onErrorJustReturn: [])
     }
 }

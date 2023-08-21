@@ -13,6 +13,10 @@ final class ViewController: UIViewController {
     
     let mainView = View()
     private let disposeBag = DisposeBag()
+    private lazy var networkService = NetworkService(
+        withNameObservable: searchBarText,
+        vc: self
+    )
     
     private lazy var animalsRelay = PublishRelay<[Animal]>()
     private lazy var animals: Observable<[Animal]> = animalsRelay.asObservable()
@@ -31,6 +35,14 @@ final class ViewController: UIViewController {
         return mainView.textField.rx.text.orEmpty
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
+            .do(onNext: { [weak self] text in
+                if text.isEmpty {
+                    self?.networkService.catsDriver = Driver.just([])
+                    self?.networkService.dogsDriver = Driver.just([])
+                    self?.showLoadingAnimation(false)
+                }
+            })
+            .filter { !$0.isEmpty }
             .subscribe(on: MainScheduler.instance)
     }
     
@@ -50,33 +62,36 @@ final class ViewController: UIViewController {
     }
     
     private func bindUI() {
-        let networkService = NetworkService(withNameObservable: searchBarText,
-                                                         vc: self)
         
         mainView.cancelButton.rx
             .controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
                 self?.mainView.textField.text = nil
+                self?.networkService.catsDriver = Driver.just([])
+                self?.networkService.dogsDriver = Driver.just([])
+                self?.showLoadingAnimation(false)
             }, onDisposed: {
                 print("cancelButton disposed")
             }).disposed(by: disposeBag)
         
-        Driver
-            .zip(networkService.catsDriver,
-                 networkService.dogsDriver)
-            { (cats, dogs) in
-                cats + dogs
-            }
-            .flatMapLatest { (items) in
-                items.sorted(by: { (item1, item2) in
-                    return item1.playfulness == item2.playfulness ? item1.name < item2.name : item1.playfulness > item2.playfulness
-                })
-            }
-            .drive(mainView.resultTableView.rx.items(
-                cellIdentifier: "Cell",
-                cellType: Cell.self
-            )) { index, model, cell in
-                cell.textLabel?.text = "\(model.playfulness) - \(model.name)"
-            }.disposed(by: disposeBag)
+        
+        networkService.catsDriver.withLatestFrom(
+            networkService.dogsDriver
+        ){ (cats, dogs) in
+            cats + dogs
+        }.map { (items) in
+            items.sorted(by: { (item1, item2) in
+                return item1.playfulness == item2.playfulness ? item1.name < item2.name : item1.playfulness > item2.playfulness
+            })
+        }
+        .do(onNext: { [weak self] _ in
+            self?.showLoadingAnimation(false)
+        })
+        .drive(mainView.resultTableView.rx.items(
+            cellIdentifier: "Cell",
+            cellType: Cell.self
+        )) { index, model, cell in
+            cell.textLabel?.text = "\(model.playfulness) - \(model.name)"
+        }.disposed(by: disposeBag)
     }
 }
