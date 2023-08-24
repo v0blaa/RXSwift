@@ -14,136 +14,56 @@
             filePath = "RXSwift/Network/NerworkRequestFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "getCatsRequest(name:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "getAnimalsRequest(name:animalType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C1622E2-F167-474F-AC5C-7755F220E363"
+            uuid = "6335E8E5-4E20-4894-BB05-60783D85EE5C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RXSwift/RXScreen/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "bindUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ABCB29C5-7C0F-4A07-846C-5BD2F0616F74"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RXSwift/RXScreen/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "bindUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8D2E019F-0015-4124-B097-DF9EF52DBBD2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RXSwift/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "fetchCats()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "77D3FF09-D986-4E75-BEBC-EF8BBFB80E77"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RXSwift/RXScreen/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "bindUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "29BB79A3-3D99-4BC9-B296-65A8F2332326"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RXSwift/RXScreen/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "bindUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "22A99ACE-73DF-4F42-91DB-F6B2561BC0E5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RXSwift/RXScreen/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "bindUI()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "22A99ACE-73DF-4F42-91DB-F6B2561BC0E5 - 6ef731f6d4ac1d50"
+                  uuid = "6335E8E5-4E20-4894-BB05-60783D85EE5C - 21775a9ecf6765cb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #6 (Swift.Int, RXSwift.Animal, RXSwift.Cell) -&gt; () in RXSwift.ViewController.bindUI() -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in RXSwift.ViewController.bindUI() -&gt; ()"
                   moduleName = "RXSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "132">
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "230">
                </Location>
                <Location
-                  uuid = "22A99ACE-73DF-4F42-91DB-F6B2561BC0E5 - 6ef731f6d4ac1d50"
+                  uuid = "6335E8E5-4E20-4894-BB05-60783D85EE5C - cf09f399202da82d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #6 (Swift.Int, RXSwift.Animal, RXSwift.Cell) -&gt; () in RXSwift.ViewController.bindUI() -&gt; ()"
+                  symbolName = "closure #2 () -&gt; () in RXSwift.ViewController.bindUI() -&gt; ()"
                   moduleName = "RXSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "203">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "8">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -151,15 +71,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6335E8E5-4E20-4894-BB05-60783D85EE5C"
-            shouldBeEnabled = "Yes"
+            uuid = "5D5536A5-E2D1-4C12-9131-CF7E13DE1464"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RXSwift/RXScreen/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "bindUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,16 +87,270 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5D5536A5-E2D1-4C12-9131-CF7E13DE1464"
+            uuid = "215F3BA0-BAF1-4861-ACF3-F373B51F6847"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/RXScreen/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "bindUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8907481A-C85B-4545-A8A6-09C846AE4956"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RXSwift/RXScreen/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "bindUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A32731FC-BBBA-483B-A6BA-3FEB8BA18405"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/RXScreen/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "bindNetworkService()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FE89047-2A5C-4DB2-B7EE-26A34B03F197"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/Network/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(withNameObservable:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3262D060-DAA6-4C4B-BA21-A2F36BCBDB62"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/RXScreen/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "3262D060-DAA6-4C4B-BA21-A2F36BCBDB62 - a7a40b5674900082"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.animals.getter : RxSwift.Observable&lt;Swift.Array&lt;RXSwift.Animal&gt;&gt;"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "3262D060-DAA6-4C4B-BA21-A2F36BCBDB62 - 897f4ac6405d60c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; RXSwift.ViewController"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "3262D060-DAA6-4C4B-BA21-A2F36BCBDB62 - 4b898002ce3993ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;RXSwift.ViewController&gt;"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "289">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20C8E033-CA22-42C7-A656-BE324D027A8D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/RXScreen/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "networkService"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "20C8E033-CA22-42C7-A656-BE324D027A8D - dcb12cb6554f0b3c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.networkService.getter : RXSwift.NetworkService"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "20C8E033-CA22-42C7-A656-BE324D027A8D - 897f4ac6405d61ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; RXSwift.ViewController"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "282">
+               </Location>
+               <Location
+                  uuid = "20C8E033-CA22-42C7-A656-BE324D027A8D - 4b898002ce3992c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;RXSwift.ViewController&gt;"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/RXScreen/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "239">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95C73CCE-0806-4366-9036-5382617D54DE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/RXScreen/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "bindNetworkService()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6E2A629-E23F-4B88-AAC4-C9972FD105DF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/Network/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "NetworkService"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E6E2A629-E23F-4B88-AAC4-C9972FD105DF - 78e1a26d017115d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.NetworkService.animals.getter : RxSwift.Observable&lt;Swift.Array&lt;RXSwift.Animal&gt;&gt;"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/Network/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  uuid = "E6E2A629-E23F-4B88-AAC4-C9972FD105DF - 6ad0bddd11d3e1c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RXSwift.NetworkService.animals.setter : RxSwift.Observable&lt;Swift.Array&lt;RXSwift.Animal&gt;&gt;"
+                  moduleName = "RXSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergejadolevic/Documents/KTS/RXSwift/RXSwift/Network/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "27EBF3DC-CD2E-4AE0-96D6-96F0681BEC66"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RXSwift/Network/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchAnimals()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

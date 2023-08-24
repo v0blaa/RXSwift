@@ -14,61 +14,67 @@ protocol NetworkServiceProtocol {
 final class NetworkService: NetworkServiceProtocol {
     
     private var animalName: Observable<String>
-    lazy var catsDriver: Driver<[Animal]> = self.fetchCats()
-    lazy var dogsDriver: Driver<[Animal]> = self.fetchDogs()
     
-    weak var vc: ViewController?
+    lazy var animals: Observable<[Animal]> = self.fetchAnimals()
+    private var animalsDisposable: Disposable?
     
-    init(withNameObservable animalName: Observable<String>,
-         vc: ViewController) {
+    lazy var animalsRelay = PublishRelay<[Animal]>()
+    var errorRelay = PublishRelay<Error>()
+    
+    init(withNameObservable animalName: Observable<String>) {
         self.animalName = animalName
-        self.vc = vc
     }
     
-    private func fetchCats() -> Driver<[Animal]> {
+    private func fetchAnimals() -> Observable<[Animal]> {
         return animalName
-            .subscribe(on: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.vc?.showLoadingAnimation(true)
-            })
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-            .flatMapLatest { text in
-                URLSession.shared.rx.data(request: NetworkRequestFactory()
-                    .getCatsRequest(name: text))
-                .map { data in
-                    if let result = try? JSONDecoder().decode([Animal].self, from: data) {
-                        return result
-                    } else {
-                        print("Cant decode result")
-                        return []
-                    }
+            .flatMapLatest { [weak self] text in
+                if text.isEmpty {
+                    return Observable<[Animal]>.just([])
                 }
-            }
-            .observe(on: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: [])
-    }
-    
-    private func fetchDogs() -> Driver<[Animal]> {
-        return animalName
-            .subscribe(on: MainScheduler.instance)
-            .do(onNext: { [weak self] _ in
-                self?.vc?.showLoadingAnimation(true)
-            })
-            .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-            .flatMapLatest { text in
-                URLSession.shared.rx.data(request: NetworkRequestFactory()
-                    .getDogsRequest(name: text))
-                .map { data in
-                    if let result = try? JSONDecoder().decode([Animal].self, from: data) {
-                        return result
-                    } else {
-                        print("Cant decode result")
-                        return []
+                let catsRequest = URLSession.shared.rx.data(request: NetworkRequestFactory.shared
+                    .getAnimalsRequest(name: text, animalType: .cats))
+                    .catch { [weak self] error in
+                        self?.errorRelay.accept(error)
+                        return Observable.just(Data())
                     }
-                }
+                    .map { data in
+                        if let result = try? JSONDecoder().decode([Animal].self, from: data) {
+                            return result
+                        } else {
+                            print("Cant decode result")
+                            return []
+                        }
+                    }
+                
+                let dogsRequest = URLSession.shared.rx.data(request: NetworkRequestFactory.shared
+                    .getAnimalsRequest(name: text, animalType: .dogs))
+                    .catch { [weak self] error in
+                        self?.errorRelay.accept(error)
+                        return Observable.just(Data())
+                    }
+                    .map { data in
+                        if let result = try? JSONDecoder().decode([Animal].self, from: data) {
+                            return result
+                        } else {
+                            print("Cant decode result")
+                            return []
+                        }
+                    }
+                
+                
+                return Observable<[Animal]>
+                    .zip(catsRequest, dogsRequest) { (cats, dogs) in
+                        cats + dogs
+                    }
+                    .map { (items) in
+                        items.sorted(by: { (item1, item2) in
+                            return item1.playfulness == item2.playfulness ? item1.name < item2.name : item1.playfulness > item2.playfulness
+                        })
+                    }
             }
+//            .asObservable()
             .observe(on: MainScheduler.instance)
-            .asDriver(onErrorJustReturn: [])
     }
 }
 
