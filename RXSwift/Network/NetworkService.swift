@@ -16,9 +16,6 @@ final class NetworkService: NetworkServiceProtocol {
     private var animalName: Observable<String>
     
     lazy var animals: Observable<[Animal]> = self.fetchAnimals()
-    private var animalsDisposable: Disposable?
-    
-    lazy var animalsRelay = PublishRelay<[Animal]>()
     var errorRelay = PublishRelay<Error>()
     
     init(withNameObservable animalName: Observable<String>) {
@@ -34,6 +31,7 @@ final class NetworkService: NetworkServiceProtocol {
                 }
                 let catsRequest = URLSession.shared.rx.data(request: NetworkRequestFactory.shared
                     .getAnimalsRequest(name: text, animalType: .cats))
+                    .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
                     .catch { [weak self] error in
                         self?.errorRelay.accept(error)
                         return Observable.just(Data())
@@ -49,6 +47,7 @@ final class NetworkService: NetworkServiceProtocol {
                 
                 let dogsRequest = URLSession.shared.rx.data(request: NetworkRequestFactory.shared
                     .getAnimalsRequest(name: text, animalType: .dogs))
+                    .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
                     .catch { [weak self] error in
                         self?.errorRelay.accept(error)
                         return Observable.just(Data())
@@ -73,8 +72,6 @@ final class NetworkService: NetworkServiceProtocol {
                         })
                     }
             }
-//            .asObservable()
-            .observe(on: MainScheduler.instance)
     }
 }
 

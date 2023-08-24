@@ -17,7 +17,6 @@ final class ViewController: UIViewController {
         withNameObservable: searchBarText
     )
     
-    private lazy var animals: Observable<[Animal]> = networkService.animalsRelay.asObservable()
     private var animalsDisposable: Disposable?
     
     var searchBarText: Observable<String> {
@@ -48,8 +47,6 @@ final class ViewController: UIViewController {
         mainView.cancelButton.rx
             .controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
-                self?.mainView.textField.text = nil
-//                self?.networkService.cancelOldRequests()
                 self?.showLoadingAnimation(false)
                 self?.bindNetworkService()
             }, onDisposed: {
