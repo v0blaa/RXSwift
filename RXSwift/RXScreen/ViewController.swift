@@ -56,16 +56,21 @@ final class ViewController: UIViewController {
         networkService.errorRelay.asObservable()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] error in
+                guard self?.presentedViewController == nil else { return }
                 let alert = UIAlertController(
                     title: error.localizedDescription,
                     message: nil,
                     preferredStyle: .alert
                 )
                 self?.present(alert, animated: true)
+                // чтобы на кнопочку не тыкань сделала....
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self?.dismiss(animated: true)
                 }
-            }).disposed(by: disposeBag)
+            }, onDisposed: {
+                print("networkService.errorRelay.asObservable() disposed")
+            }
+            ).disposed(by: disposeBag)
     }
     
     private func bindNetworkService() {

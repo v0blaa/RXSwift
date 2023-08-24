@@ -74,9 +74,3 @@ final class NetworkService: NetworkServiceProtocol {
             }
     }
 }
-
-enum NetworkError: Error {
-    case noResponse
-    case failedResponse
-    case cantParce
-}
