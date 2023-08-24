@@ -21,7 +21,7 @@ final class ViewController: UIViewController {
     
     var searchBarText: Observable<String> {
         return mainView.textField.rx.text.orEmpty.skip(1)
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(on: MainScheduler.instance)
     }
