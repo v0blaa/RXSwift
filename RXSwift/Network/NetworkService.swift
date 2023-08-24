@@ -40,7 +40,7 @@ final class NetworkService: NetworkServiceProtocol {
                         if let result = try? JSONDecoder().decode([Animal].self, from: data) {
                             return result
                         } else {
-                            print("Cant decode result")
+                            self?.errorRelay.accept(NetworkError.cantParce)
                             return []
                         }
                     }
@@ -56,7 +56,7 @@ final class NetworkService: NetworkServiceProtocol {
                         if let result = try? JSONDecoder().decode([Animal].self, from: data) {
                             return result
                         } else {
-                            print("Cant decode result")
+                            self?.errorRelay.accept(NetworkError.cantParce)
                             return []
                         }
                     }
@@ -73,4 +73,8 @@ final class NetworkService: NetworkServiceProtocol {
                     }
             }
     }
+}
+
+enum NetworkError: Error {
+    case cantParce
 }
