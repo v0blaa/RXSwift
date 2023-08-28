@@ -24,6 +24,9 @@ final class ViewController: UIViewController {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(on: MainScheduler.instance)
+            .do(onNext: { [weak self] _ in
+                self?.showLoadingAnimation(true)
+            })
     }
     
     override func viewDidLoad() {
@@ -49,6 +52,7 @@ final class ViewController: UIViewController {
             .subscribe(onNext: { [weak self] in
                 self?.showLoadingAnimation(false)
                 self?.bindNetworkService()
+                self?.mainView.textField.text = nil
             }, onDisposed: {
                 print("cancelButton disposed")
             }).disposed(by: disposeBag)
